@@ -23,8 +23,8 @@ Notes to my future self for re-using the project on a fresh machine:
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 
 # 2. Clone and enter the project
-git clone <this-repo-url>
-cd <repo-folder>
+git clone https://github.com/alessandro-001/mcp-chat.git
+cd mcp-chat
 
 # 3. Create .env (see "Configure the environment variables" below) with a NEW API key
 
