@@ -14,9 +14,38 @@ This is my completed project from Anthropic's **Introduction to Model Context Pr
 
 Not done: the optional `summarize` prompt is still a TODO in `mcp_server.py`.
 
+## Quick start (Windows PowerShell)
+
+Notes to my future self for re-using the project on a fresh machine:
+
+```powershell
+# 1. Install uv (https://docs.astral.sh/uv/), then CLOSE AND REOPEN the terminal / VS Code
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+
+# 2. Clone and enter the project
+git clone <this-repo-url>
+cd <repo-folder>
+
+# 3. Create .env (see "Configure the environment variables" below) with a NEW API key
+
+# 4. Create and activate the virtual environment, install, run
+uv venv
+.venv\Scripts\Activate.ps1
+uv pip install -e .
+uv run main.py
+```
+
+- **`uv` is not recognized:** the terminal was opened before uv was installed. Reopen it (for VS Code, quit every window), or run `$env:Path += ";$env:USERPROFILE\.local\bin"` for the current session.
+- **`source .venv/bin/activate` fails:** `source` is bash-only. On PowerShell use `.venv\Scripts\Activate.ps1` (if blocked, run `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` once).
+- **`uv run` reinstalls packages the first time:** it syncs the venv to `uv.lock`. Expected, only once.
+- **"Failed to hardlink files" warning:** harmless; happens when the project and uv's cache are on different drives.
+- **VS Code "Error refreshing packages":** uv venvs don't include pip. Fix with `uv pip install pip`.
+- **Exit the chat** with `Ctrl+C`; there is no `exit` command.
+- **Testing the server:** `mcp dev mcp_server.py` opens the MCP Inspector in the browser (needs Node.js).
+
 ## Prerequisites
 
-- Python 3.9+
+- Python 3.10+
 - Anthropic API Key
 
 ## Setup
